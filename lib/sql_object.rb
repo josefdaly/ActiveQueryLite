@@ -1,12 +1,13 @@
 require_relative 'db_connection'
-require_relative '02_searchable.rb'
+require_relative 'searchable'
+require_relative 'associatable'
 require 'active_support/inflector'
-require '03_associatable'
 # NB: the attr_accessor we wrote in phase 0 is NOT used in the rest
 # of this project. It was only a warm up.
 
 class SQLObject
   extend Searchable
+  extend Associatable
 
   def self.columns
     everything = DBConnection.execute2(<<-SQL)
@@ -90,18 +91,19 @@ class SQLObject
   end
 
   def insert
-    col_names = self.class.columns.join(',')
-    question_marks = '(' + (['?'] * self.class.columns.length).join(',') + ')'
+    # drop 1 to avoid inserting id (the first column)
+    columns = self.class.columns.drop(1)
+    col_names = columns.map(&:to_s).join(", ")
+    question_marks = (["?"] * columns.count).join(", ")
 
-    attr_values = attribute_values
-    attr_values[0] = self.id = DBConnection.last_insert_row_id
-
-    DBConnection.execute(<<-SQL, *attr_values)
+    DBConnection.execute(<<-SQL, *attribute_values.drop(1))
       INSERT INTO
         #{self.class.table_name} (#{col_names})
       VALUES
-        #{question_marks}
+        (#{question_marks})
     SQL
+
+    self.id = DBConnection.last_insert_row_id
   end
 
   def update

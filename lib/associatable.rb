@@ -1,4 +1,5 @@
-require_relative '02_searchable'
+require_relative 'searchable'
+require_relative 'sql_object'
 require 'active_support/inflector'
 
 # Phase IIIa
@@ -68,13 +69,15 @@ module Associatable
     end
   end
 
+  def has_one_through(name, through_name, source_name)
+    define_method(name) do
+      self.send(through_name.to_sym).send(source_name.to_sym)
+    end
+  end
+
   def assoc_options
     # Wait to implement this in Phase IVa. Modify `belongs_to`, too.
     @assoc_options ||= {}
     @assoc_options
   end
-end
-
-class SQLObject
-  extend Associatable
 end
