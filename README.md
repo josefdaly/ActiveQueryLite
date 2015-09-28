@@ -22,7 +22,7 @@ Returns all table rows.
 ```ruby
 Todo.where(column: value)
 ```
-Returns all table rows that match the inserted parameters.
+Returns all table rows that match the inserted parameters, via Searchable module.
 
 ```ruby
 Todo.find(id)
