@@ -3,7 +3,7 @@
 Active Record Lite is an Object Relational Mapper built following the Active
 Record architectural pattern, particularly the implementation found in Ruby
 on Rails. Active Record Lite is a streamlined means by which to model and
-associate database tables. For a demonstration download the repo and run `rake demo_console`, from the root folder. The demo schema has a table of lists and a table of todos in a one to many relationship.
+associate database tables. For a demonstration, download the repo and run `rake demo_console`, from the root folder. The demo schema has a table of lists and a table of todos in a one to many relationship.
 
 ## SQLObject
 
@@ -43,8 +43,16 @@ class Todo < SQLObject
   belongs_to(
     :list,
     class_name: 'List',
-    foreign_key:
+    foreign_key: :list_id,
+    primary_key: :id
   )
+  self.finalize!
+end
+```
+If `:class_name`,`:foreign_key` or `:primary_key` are left empty, they will be auto populated with default values that following the naming conventions in Ruby on Rails. The following would also be valid.
+```ruby
+class Todo < SQLObject
+  belongs_to :list
   self.finalize!
 end
 ```
