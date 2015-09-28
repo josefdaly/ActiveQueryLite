@@ -18,17 +18,17 @@ end
 Todo.all
 ```
 Returns all table rows.
-----
+
 ```ruby
 Todo.where(column: value)
 ```
 Returns all table rows that match the inserted parameters.
-----
+
 ```ruby
 Todo.find(id)
 ```
 Returns the table row with the corresponding id.
-----
+
 ```ruby
 @todo = Todo.new(name: 'Clean Bedroom')
 @todo.save
