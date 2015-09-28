@@ -1,0 +1,12 @@
+CREATE TABLE todos (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  finished INTEGER NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  list_id INTEGER NOT NULL
+);
+
+CREATE TABLE lists (
+  id INTEGER PRIMARY KEY,
+  name varchar(255) NOT NULL
+);

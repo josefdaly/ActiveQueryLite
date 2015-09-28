@@ -1,8 +1,8 @@
 require 'sqlite3'
 
 ROOT_FOLDER = File.join(File.dirname(__FILE__), '..')
-SQL_FILE = File.join(ROOT_FOLDER, 'urls.sql')
-DB_FILE = File.join(ROOT_FOLDER, 'urls.db')
+SQL_FILE = File.join(ROOT_FOLDER, 'test_schema.sql')
+DB_FILE = File.join(ROOT_FOLDER, 'test_db.db')
 
 class DBConnection
   def self.open(db_file_name)

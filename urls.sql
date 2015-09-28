@@ -1,5 +1,0 @@
-CREATE TABLE urls (
-  id INTEGER PRIMARY KEY,
-  url VARCHAR(255) NOT NULL,
-  shortened VARCHAR(255) NOT NULL
-);
