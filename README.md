@@ -5,6 +5,10 @@ Record architectural pattern, particularly the implementation found in Ruby
 on Rails. Active Record Lite is a streamlined means by which to model and
 associate database tables. For a demonstration, download the repo and run `rake demo_console`, from the root folder. The demo schema has a table of lists and a table of todos in a one to many relationship.
 
+
+
+[URL Shortener](http://www.lync.space/) is an app deployed to Heroku that uses a modified version of this active record implementation to interact with a PostgreSQL DB.
+
 ## SQLObject
 
 This is the model class. Basic usage is as follows.
